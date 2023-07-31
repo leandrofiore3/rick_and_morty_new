@@ -1,0 +1,6 @@
+/* Estilos para el componente Cards */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

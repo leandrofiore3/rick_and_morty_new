@@ -1,17 +1,12 @@
 import React from 'react';
+import styles from './Card.module.css'; // Importar los estilos CSS
 
 export default function Card(props) {
   const { id, name, status, species, gender, origin, image, onClose } = props;
 
-   // const handleClose = () => {
-   //    // Ejecutar la función onClose cuando el usuario hace click en la X de "cerrar".
-   //    if (onClose) {
-   //       onClose();
-   //    }
-   // };
   return (
-    <div>
-      <button onClick={onClose}>X</button>
+    <div className={styles['card-container']}>
+      <button onClick={onClose} className={styles['close-button']}>X</button>
       <h2>{name}</h2>
       <h2>Status: {status}</h2>
       <h2>Species: {species}</h2>
@@ -21,6 +16,7 @@ export default function Card(props) {
     </div>
   );
 }
+
 
 
 
