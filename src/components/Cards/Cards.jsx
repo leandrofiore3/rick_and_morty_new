@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 import Card from '../Card/Card.jsx'; // Importar el componente Card
 import styles from './Cards.module.css'; // Importar los estilos CSS
 
