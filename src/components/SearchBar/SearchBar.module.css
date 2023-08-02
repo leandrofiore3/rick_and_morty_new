@@ -1,0 +1,49 @@
+/* Estilos para el componente SearchBar */
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  background-color: rgba(149, 194, 173, 0.8);
+  padding: 8px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 30%;
+  margin-left: 20px;
+}
+
+.search-bar-container input {
+  padding: 8px;
+  font-size: 16px;
+  border: solid;
+  border-radius: 20px;
+  margin-right: 8px;
+  width: 100%;
+  max-width: 300px; /* Establecer un máximo de ancho */
+}
+
+.search-bar-container button {
+  padding: 10px 20px; /* Aumentar el padding para hacer los botones más alargados */
+  color: #fff;
+  border: none;
+  border-radius: 20px; /* Cambiar el borde a más redondeado */
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Estilo para el botón de agregar */
+.search-bar-container .add-button {
+  background-color: #2ecc71;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilo para el botón de random */
+.search-bar-container .random-button {
+  background-color: #27ae60;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  margin-left: 2em;
+}
+
+
+
+
+
+

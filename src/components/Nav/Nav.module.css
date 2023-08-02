@@ -1,0 +1,50 @@
+/* Estilos para el componente Nav */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  position: sticky; /* Fijar la barra de navegación en la parte superior */
+  top: 0; /* Asegurarse de que esté en la parte superior */
+  left: 0; /* Asegurarse de que esté pegada a la izquierda */
+  right: 0; /* Asegurarse de que ocupe todo el ancho */
+  z-index: 1; /* Asegurarse de que esté por encima de los demás elementos */
+}
+
+/* Estilos para el componente SearchBar en Nav */
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  background-color: rgba(149, 194, 173, 0.8);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 60%;
+  margin-left: 20px;
+}
+
+/* Estilos para los botones en Nav */
+.nav-container button {
+  padding: 10px 20px; /* Aumentar el padding para hacer los botones más alargados */
+  color: #fff;
+  border: none;
+  border-radius: 20px; /* Cambiar el borde a más redondeado */
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Estilo para el botón de random */
+.nav-container .random-button {
+  background-color: #27ae60;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Agregar sombreado */
+}
+
+
+
+
+
+
