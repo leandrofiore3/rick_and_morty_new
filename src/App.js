@@ -45,6 +45,10 @@ function App() {
     onSearch(randomId);
   };
 
+  function getRandomCharacterId() {
+    return Math.floor(Math.random() * 826) + 1; // Número aleatorio entre 1 y 826 (total de personajes en la API)
+  }
+
   return (
     <div className={styles['app-container']}>
       <img
@@ -60,9 +64,7 @@ function App() {
   );
 }
 
-function getRandomCharacterId() {
-  return Math.floor(Math.random() * 826) + 1; // Número aleatorio entre 1 y 826 (total de personajes en la API)
-}
+
 
 export default App;
 

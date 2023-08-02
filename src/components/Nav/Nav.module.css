@@ -13,35 +13,6 @@
   z-index: 1; /* Asegurarse de que esté por encima de los demás elementos */
 }
 
-/* Estilos para el componente SearchBar en Nav */
-.search-bar-container {
-  display: flex;
-  align-items: center;
-  background-color: rgba(149, 194, 173, 0.8);
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  border-radius: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  width: 60%;
-  margin-left: 20px;
-}
-
-/* Estilos para los botones en Nav */
-.nav-container button {
-  padding: 10px 20px; /* Aumentar el padding para hacer los botones más alargados */
-  color: #fff;
-  border: none;
-  border-radius: 20px; /* Cambiar el borde a más redondeado */
-  cursor: pointer;
-  transition: box-shadow 0.3s ease;
-}
-
-/* Estilo para el botón de random */
-.nav-container .random-button {
-  background-color: #27ae60;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Agregar sombreado */
-}
 
 
 
