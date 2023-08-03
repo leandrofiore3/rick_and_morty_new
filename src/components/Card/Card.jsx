@@ -6,7 +6,7 @@ export default function Card(props) {
 
   return (
     <div className={styles['card-container']}>
-      <button className={styles['close-button']} onClick={onClose}>X</button>
+      <button className={styles['close-button']} onClick={()=>onClose(id)}>X</button>
       <h2>{name}</h2>
       <h2>Status: {status}</h2>
       <h2>Species: {species}</h2>

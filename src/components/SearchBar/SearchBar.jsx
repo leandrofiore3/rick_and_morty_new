@@ -31,7 +31,7 @@ export default function SearchBar({ onRandomSearch, onSearch }) {
       <button onClick={handleSearch} className={styles['add-button']}>
         Agregar
       </button>
-      <button onClick={onRandomSearch} className={styles['random-button']}>
+      <button onClick={()=>onRandomSearch()} className={styles['random-button']}>
         Random
       </button>
     </div>

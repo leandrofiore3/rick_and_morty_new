@@ -6,7 +6,7 @@ import rickAndMortyBg from './assets/rick-2.jpg'; // Importar la imagen
 import axios from 'axios'; // Importar axios
 
 function App() {
-  const [characters, setCharacters] = useState([]); // Crear estado local "characters" y su función "setCharacters"
+  const [characters, setCharacters] = useState([]); // Crear estado local "characters" y su función "setCharacters" // como valor inicial un array vacío
 
   const onSearch = (id) => {
     // Verificar que el ID sea válido (entre 1 y 826)
@@ -15,7 +15,6 @@ function App() {
       window.alert('Ingrese un número válido entre 1 y 826');
       return;
     }
-
     // Verificar si el personaje ya existe en el estado
     if (characters.some((character) => character.id === parsedId)) {
       window.alert('¡Este personaje ya está en pantalla!');
@@ -34,20 +33,20 @@ function App() {
   };
 
   const onClose = (id) => {
-    const charactersFiltered = characters.filter(
-      (character) => character.id !== Number(id)
+    const charactersFiltered = characters.filter(// Filtrar el array de personajes
+      (character) => character.id !== Number(id)// Si el ID del personaje es distinto al ID recibido, se mantiene en el array
     );
-    setCharacters(charactersFiltered);
-  };
-
-  const onRandomSearch = () => {
-    const randomId = getRandomCharacterId();
-    onSearch(randomId);
+    setCharacters(charactersFiltered);// Actualizar el estado con el array filtrado
   };
 
   function getRandomCharacterId() {
     return Math.floor(Math.random() * 826) + 1; // Número aleatorio entre 1 y 826 (total de personajes en la API)
   }
+
+  const onRandomSearch = () => {
+    const randomId = getRandomCharacterId();
+    onSearch(randomId);
+  };
 
   return (
     <div className={styles['app-container']}>
@@ -63,8 +62,6 @@ function App() {
     </div>
   );
 }
-
-
 
 export default App;
 
