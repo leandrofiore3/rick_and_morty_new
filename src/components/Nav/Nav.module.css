@@ -13,6 +13,21 @@
   z-index: 1; /* Asegurarse de que esté por encima de los demás elementos */
 }
 
+.options li {
+  display: inline-flex;
+  padding: 0.5em;
+}
+
+.active {
+  color: brown;
+  font-weight: bold;
+  text-decoration: none;
+}
+.disable {
+  color: #f6f4e6;
+  text-decoration: none;
+}
+
 
 
 

@@ -4,6 +4,7 @@ import Nav from './components/Nav/Nav.jsx';
 import styles from './App.module.css'; // Importar los estilos CSS
 import rickAndMortyBg from './assets/rick-2.jpg'; // Importar la imagen
 import axios from 'axios'; // Importar axios
+import {Routes, Route} from 'react-router-dom';
 
 function App() {
   const [characters, setCharacters] = useState([]); // Crear estado local "characters" y su función "setCharacters" // como valor inicial un array vacío
