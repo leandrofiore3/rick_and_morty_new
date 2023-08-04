@@ -5,6 +5,8 @@ import styles from './App.module.css'; // Importar los estilos CSS
 import rickAndMortyBg from './assets/rick-2.jpg'; // Importar la imagen
 import axios from 'axios'; // Importar axios
 import {Routes, Route} from 'react-router-dom';
+import About from './components/About/About.jsx';
+import Detail from './components/Detail/Detail.jsx';
 
 function App() {
   const [characters, setCharacters] = useState([]); // Crear estado local "characters" y su función "setCharacters" // como valor inicial un array vacío
@@ -58,7 +60,13 @@ function App() {
       />
       <div className={styles['content-container']}>
         <Nav onRandomSearch={onRandomSearch} onSearch={onSearch} />
-        <Cards characters={characters} onClose={onClose} />
+        <Routes>
+        
+        <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/detail/:id" element={<Detail />} />
+      </Routes>
+        
       </div>
     </div>
   );
