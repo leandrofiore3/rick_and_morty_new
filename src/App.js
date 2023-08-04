@@ -7,9 +7,11 @@ import axios from 'axios'; // Importar axios
 import {Routes, Route} from 'react-router-dom';
 import About from './components/About/About.jsx';
 import Detail from './components/Detail/Detail.jsx';
+import Error from './components/Error/Error.jsx';
 
 function App() {
   const [characters, setCharacters] = useState([]); // Crear estado local "characters" y su función "setCharacters" // como valor inicial un array vacío
+ 
 
   const onSearch = (id) => {
     // Verificar que el ID sea válido (entre 1 y 826)
