@@ -1,17 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Cards from './components/Cards/Cards.jsx';
 import Nav from './components/Nav/Nav.jsx';
 import styles from './App.module.css'; // Importar los estilos CSS
 import rickAndMortyBg from './assets/rick-2.jpg'; // Importar la imagen
 import axios from 'axios'; // Importar axios
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useLocation, useNavigate} from 'react-router-dom';
 import About from './components/About/About.jsx';
 import Detail from './components/Detail/Detail.jsx';
 import Error from './components/Error/Error.jsx';
+import Form from './components/Form/Form.jsx';
+
+
+const email = 'leandro@gmail.com';
+const password = '123asd';
 
 function App() {
   const [characters, setCharacters] = useState([]); // Crear estado local "characters" y su función "setCharacters" // como valor inicial un array vacío
- 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [access, setAccess] = useState(false);
+  
+  const login = (userData) => {
+    if(userData.email === email && userData.password === password){
+       setAccess(true);
+       navigate('/home');
+    }
+  }
+
+  useEffect(() => {
+    !access && navigate('/');
+  }, [access, navigate]);
 
   const onSearch = (id) => {
     // Verificar que el ID sea válido (entre 1 y 826)
@@ -61,9 +79,11 @@ function App() {
         alt="Rick and Morty Background"
       />
       <div className={styles['content-container']}>
-        <Nav onRandomSearch={onRandomSearch} onSearch={onSearch} />
+        {
+        location.pathname !== '/' && <Nav onRandomSearch={onRandomSearch} onSearch={onSearch} setAccess={setAccess} />
+        }
         <Routes>
-        
+        <Route path='/' element={<Form login={login}/>} />
         <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
