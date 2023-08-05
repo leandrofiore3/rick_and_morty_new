@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import Cards from './components/Cards/Cards.jsx';
 import Nav from './components/Nav/Nav.jsx';
-import styles from './App.module.css'; // Importar los estilos CSS
-import rickAndMortyBg from './assets/rick-2.jpg'; // Importar la imagen
-import axios from 'axios'; // Importar axios
-import {Routes, Route, useLocation, useNavigate} from 'react-router-dom';
+import styles from './App.module.css'; 
+import rickAndMortyBg from './assets/rick-2.jpg'; 
+import axios from 'axios'; 
 import About from './components/About/About.jsx';
 import Detail from './components/Detail/Detail.jsx';
-import Error from './components/Error/Error.jsx';
+import NotFound from './components/NotFound/NotFound.jsx';
 import Form from './components/Form/Form.jsx';
 
 
@@ -19,17 +19,28 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const [access, setAccess] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [validRoute, setValidRoute] = useState(true);
   
   const login = (userData) => {
-    if(userData.email === email && userData.password === password){
-       setAccess(true);
-       navigate('/home');
+    if(userData.email === email && userData.password === password){// Verificar que el email y la contraseña sean correctos 
+       setAccess(true); // Actualizar el estado de acceso
+       navigate('/home'); // Redireccionar a la ruta /home
     }
-  }
+    else{
+      window.alert('Email o contraseña incorrectos');
+    }
+  };
 
   useEffect(() => {
-    !access && navigate('/');
-  }, [access, navigate]);
+    const validRoutes = ['/home', '/about', '/detail/:id'];
+    if (!validRoutes.includes(location.pathname)) {// Si la ruta no es válida, redireccionar a /not_found
+      setValidRoute(false);
+    }
+    else{
+    !access && navigate('/');// Si no hay acceso, redireccionar a /
+    }
+  }, [access, navigate, location.pathname]);
 
   const onSearch = (id) => {
     // Verificar que el ID sea válido (entre 1 y 826)
@@ -79,21 +90,20 @@ function App() {
         alt="Rick and Morty Background"
       />
       <div className={styles['content-container']}>
-        {
-        location.pathname !== '/' && <Nav onRandomSearch={onRandomSearch} onSearch={onSearch} setAccess={setAccess} />
-        }
+        {location.pathname !== '/' && location.pathname !== '/not_found' && <Nav onRandomSearch={onRandomSearch} onSearch={onSearch} setAccess={setAccess} />}
         <Routes>
-        <Route path='/' element={<Form login={login}/>} />
-        <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/detail/:id" element={<Detail />} />
-      </Routes>
-        
+          <Route path="/" element={<Form login={login} />} />
+          <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/not_found" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/not_found" />} />
+        </Routes>
       </div>
     </div>
   );
 }
-
+  
 export default App;
 
 
