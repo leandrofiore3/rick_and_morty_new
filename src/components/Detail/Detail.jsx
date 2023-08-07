@@ -1,26 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Detail.module.css'; 
+import styles from './Detail.module.css';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 
 export default function Detail() {
   const [character, setCharacter] = useState({});
   const { id } = useParams();
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
-      if (data.name) {
-        setCharacter(data);
-      } else {
-        window.alert('No hay personajes con ese ID');
-      }
-    });
-    return () => setCharacter({}); // Esta función se ejecutará cuando el componente se desmonte
+    axios(`https://rickandmortyapi.com/api/character/${id}`)
+      .then(({ data }) => {
+        if (data.name) {
+          setCharacter(data);
+        } else {
+          setNotFound(true);
+        }
+      })
+      .catch((error) => {
+        setNotFound(true);
+      });
   }, [id]);
+
+  if (notFound) {
+    return <Navigate to="/not_found" />;
+  }
 
   return (
     <div className={styles['card-container']}>
-      {character.name ? ( // Usamos el operador ternario de forma correcta
+      {character.name ? (
         <div>
           <h1>{character.name}</h1>
           <p>STATUS: {character.status}</p>
@@ -30,8 +38,9 @@ export default function Detail() {
           {character.image && <img src={character.image} alt={character.name} />}
         </div>
       ) : (
-        <h3>LOADING...</h3> // Mostramos "LOADING..." mientras se carga el personaje
+        <h3>LOADING...</h3>
       )}
     </div>
   );
 }
+
