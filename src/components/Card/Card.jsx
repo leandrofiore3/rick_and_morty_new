@@ -14,7 +14,7 @@ function Card(props) {
     if (isFav) {
       removeFav(id);
     } else {
-      addFav({ id, name, status, species, gender, origin, image, onClose}); // Puedes pasar más datos si es necesario
+      addFav({ id, name, status, species, gender, origin, image, isInFavorites: true, onClose });
     }
   };
 

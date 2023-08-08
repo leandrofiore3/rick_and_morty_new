@@ -33,7 +33,7 @@ function App() {
   };
 
   useEffect(() => {
-    const validRoutes = ['/home', '/about', '/detail/:id'];
+    const validRoutes = ['/home', '/about', '/detail/:id', '/favorites'];
     if (!validRoutes.includes(location.pathname)) {// Si la ruta no es válida, redireccionar a /not_found
       setValidRoute(false);
     }
@@ -95,7 +95,7 @@ function App() {
           <Route path="/" element={<Form login={login} />} />
           <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
           <Route path="/about" element={<About />} />
-          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/favorites" element={<Favorites  />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/not_found" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/not_found" />} />
