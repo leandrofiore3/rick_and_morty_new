@@ -29,6 +29,11 @@ export default function Nav({ onRandomSearch, onSearch, setAccess }) {
               LOG OUT
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/favorites" activeClassName={styles.active} className={styles.link}>
+              FAVORITES
+            </NavLink>
+          </li>
         </div>
         <SearchBar onRandomSearch={onRandomSearch} onSearch={onSearch} />
     </div>
