@@ -5,9 +5,9 @@ import Card from '../Card/Card';
 
 function Favorites({ favorites }) {
   return (
-    <div>
+    <div className={Styles.container}>
       <h1>Your Favorites</h1>
-      <div>
+      
         {favorites.map((fav) => (
           <Card
             key={fav.id}
@@ -18,9 +18,10 @@ function Favorites({ favorites }) {
             gender={fav.gender}
             origin={fav.origin}
             image={fav.image}
+            
           />
         ))}
-      </div>
+      
     </div>
   );
 }

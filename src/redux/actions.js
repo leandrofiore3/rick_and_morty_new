@@ -1,13 +1,13 @@
-const addFav = 'ADD_FAV';
-const removeFav = 'REMOVE_FAV';
+export const ADD_FAV = "ADD_FAV";
+export const REMOVE_FAV = "REMOVE_FAV";
 
 export const addFavAction = (character) => ({
-  type: addFav,
+  type: ADD_FAV,
   payload: character,
 });
 
 export const removeFavAction = (id) => ({
-  type: removeFav,
+  type: REMOVE_FAV,
   payload: id,
 });
 

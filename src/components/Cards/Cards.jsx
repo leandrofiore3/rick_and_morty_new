@@ -19,7 +19,8 @@ export default function Cards({ characters, onClose }) { // Recibir "characters"
             gender={gender}
             origin={originName}
             image={image}
-            onClose={() => onClose(id)} // Pasa el "id" cuando se ejecute onClose
+            onClose={() => onClose(id)} 
+            // Pasa el "id" cuando se ejecute onClose
           />
         );
       })}
