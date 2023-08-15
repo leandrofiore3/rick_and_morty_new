@@ -9,25 +9,23 @@ const server = http.createServer((req, res) => {
   const pathName = parsedUrl.pathname;
 
   if (pathName.startsWith('/rickandmorty/character/')) {
-    const parts = pathName.split('/');
+    const parts = pathName.split('/');// Separar la URL por cada /
     const id = parts[3]; // Obtener el id del último segmento de la URL
-    const characterId = parseInt(id);
+    const characterId = parseInt(id);// Convertir el id a un número entero
 
     const character = data.find(character => character.id === characterId);
 
     if (character) {
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(character));
+      return res.end(JSON.stringify(character));
     } else {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('Character not found');
+      return res.end(JSON.stringify({error: 'Character not found'}));
     }
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not found');
+     return res.end('Not found');
   }
 });
 
-server.listen(3001, () => {
-  console.log('Server is running on port 3001');
-});
+server.listen(3001, "localhost");
