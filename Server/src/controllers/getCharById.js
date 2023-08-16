@@ -20,7 +20,8 @@ const getCharById = (res, id) => {
       };
 
       // Devuelve una respuesta en formato JSON con el personaje
-      res.status(200).json(character);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(character));
     })
     .catch(error => {
       res.status(500).set('Content-Type', 'text/plain').send(error.message);
