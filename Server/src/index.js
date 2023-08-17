@@ -9,8 +9,7 @@ const server = http.createServer((req, res) => {
   const pathName = parsedUrl.pathname;
 
   if (pathName.includes('/rickandmorty/character')) {
-    const parts = pathName.split('/');
-    const id = parts[parts.length - 1]; // Obtener el último segmento de la URL como id
+    const id = pathName.split('/').at(-1);
     const characterId = parseInt(id);
 
     getCharById(res, characterId); // Llama al controlador getCharById con los parámetros requeridos
