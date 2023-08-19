@@ -15,4 +15,4 @@ function login(req, res) {
 
 }
 
-module.exports = login;
+module.exports = { login };

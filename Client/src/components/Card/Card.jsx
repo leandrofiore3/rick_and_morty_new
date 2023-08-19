@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Card.module.css';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { addFavAction, removeFavAction } from '../../redux/actions';
+import { addFav, removeFav } from "../../redux/actions";
 
 function Card(props) {
   const { id, name, status, species, gender, origin, image, onClose, addFav, removeFav, favorites } = props;
@@ -57,8 +57,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addFav: (payload) => dispatch(addFavAction(payload)),
-    removeFav: (payload) => dispatch(removeFavAction(payload)),
+    addFav: (payload) => dispatch(addFav(payload)),
+    removeFav: (payload) => dispatch(removeFav(payload)),
   };
 };
 

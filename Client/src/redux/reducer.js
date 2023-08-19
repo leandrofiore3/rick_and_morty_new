@@ -1,5 +1,6 @@
 import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from "./actions";
 
+
 const initialState = {
   myFavorites: [],
   allCharacters: [],
@@ -8,23 +9,9 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FAV:
-      return {
-        ...state,
-        allCharacters: [...state.allCharacters, action.payload],
-        myFavorites: [...state.myFavorites, action.payload],
-      };
-    case REMOVE_FAV:
-      const updatedAllCharacters = state.allCharacters.filter(
-        (character) => character.id !== action.payload
-      );
-      const updatedFavorites = state.myFavorites.filter(
-        (favorite) => favorite.id !== action.payload
-      );
-      return {
-        ...state,
-        allCharacters: updatedAllCharacters,
-        myFavorites: updatedFavorites,
-      };
+      return { ...state, myFavorites: action.payload, allCharacters: action.payload };
+      case REMOVE_FAV:
+        return { ...state, myFavorites: action.payload };
       case FILTER:
         const filteredCharacters = action.payload === "all"
           ? state.allCharacters // Si se selecciona "All Characters", no aplicamos filtro

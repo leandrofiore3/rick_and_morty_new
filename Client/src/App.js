@@ -11,9 +11,6 @@ import NotFound from './components/NotFound/NotFound.jsx';
 import Form from './components/Form/Form.jsx';
 import Favorites from './components/Favorites/Favorites.jsx';
 
-const email = 'leandro@gmail.com';
-const password = '123asd';
-
 function App() {
   const [characters, setCharacters] = useState([]); // Crear estado local "characters" y su función "setCharacters" // como valor inicial un array vacío
   const location = useLocation();
@@ -22,15 +19,15 @@ function App() {
   // eslint-disable-next-line no-unused-vars
   const [validRoute, setValidRoute] = useState(true);
   
-  const login = (userData) => {
-    if(userData.email === email && userData.password === password){// Verificar que el email y la contraseña sean correctos 
-       setAccess(true); // Actualizar el estado de acceso
-       navigate('/home'); // Redireccionar a la ruta /home
-    }
-    else{
-      window.alert('Email o contraseña incorrectos');
-    }
-  };
+  function login(userData) {
+    const { email, password } = userData;
+    const URL = 'http://localhost:3001/rickandmorty/login/';
+    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+       const { access } = data;
+       setAccess(data);
+       access && navigate('/home');
+    });
+ }
 
   useEffect(() => {
     const validRoutes = ['/home', '/about', '/detail/:id', '/favorites'];

@@ -2,7 +2,7 @@ import React from 'react';
 import Styles from './Favorites.module.css'
 import { connect, useDispatch } from "react-redux";
 import Card from '../Card/Card';
-import { removeFavAction, orderCards, filterCards } from '../../redux/actions'; // Importa la acción de eliminar favoritos
+import { removeFav, orderCards, filterCards } from '../../redux/actions'; // Importa la acción de eliminar favoritos
 import { useState } from 'react';
 
 function Favorites({ favorites, removeFav }) {
@@ -70,7 +70,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeFav: (id) => dispatch(removeFavAction(id)), // Agregar la acción de eliminar favoritos
+    removeFav: (id) => dispatch(removeFav(id)), // Agregar la acción de eliminar favoritos
   };
 };
 
