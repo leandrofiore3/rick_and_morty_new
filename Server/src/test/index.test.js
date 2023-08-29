@@ -1,9 +1,11 @@
-const app = require('../src/app');
+const app = require('./src/app');
 const session = require('supertest');
 const agent = session(app);
-const { email, password } = require('../src/utils/login');
+const { email, password } = require('./src/utils/login');
 
 describe('Test de RUTAS', () => {
+});
+
   describe('GET /rickandmorty/character/:id', () => {
     // PRIMER TEST
     it('Responde con status: 200', async () => {
@@ -31,16 +33,35 @@ describe('Test de RUTAS', () => {
   });
   })
 
-  describe('GET /rickandmorty/character', () => {
-    it('Responde con status: 200', async () => {
-      await agent.get('/rickandmorty/character').expect(200);
+  // Describe para POST /rickandmorty/fav
+  describe('POST /rickandmorty/fav', () => {
+    // Primer test
+    it('Debería devolver un arreglo que contiene el elemento enviado por body', async () => {
+      const response = await agent
+        .post('/rickandmorty/fav')
+        .send({ characterId: 1 });
+
+      expect(response.status).toBe(200);
+      const result = response.body;
+
+      expect(Array.isArray(result)).toBe(true);
+      expect(result).toContainEqual({ characterId: 1 });
     });
 
-    it('Responde un array de personajes', async () => {
-      const response = await agent.get('/rickandmorty/character');
+    // Segundo test
+    it('Debería devolver un arreglo que contiene todos los elementos enviados por body', async () => {
+      // Primero agregamos un elemento
+      await agent.post('/rickandmorty/fav').send({ characterId: 1 });
+
+      // Luego agregamos otro elemento
+      const response = await agent.post('/rickandmorty/fav').send({ characterId: 2 });
+
       expect(response.status).toBe(200);
-      const characters = response.body;
-      expect(Array.isArray(characters)).toBeTruthy();
+      const result = response.body;
+
+      expect(Array.isArray(result)).toBe(true);
+      expect(result).toContainEqual({ characterId: 1 });
+      expect(result).toContainEqual({ characterId: 2 });
     });
   });
 
@@ -61,4 +82,35 @@ describe('Test de RUTAS', () => {
     });
   });
 
-});
+   describe('DELETE /rickandmorty/fav/:id', () => {
+      // Primer test
+      it('Si el ID no existe, debe devolver el arreglo sin modificar', async () => {
+        // Agregamos un elemento
+        await agent.post('/rickandmorty/fav').send({ characterId: 1 });
+
+        // Intentamos eliminar un elemento con un ID que no existe (por ejemplo, 999)
+        const response = await agent.delete('/rickandmorty/fav/999');
+
+        expect(response.status).toBe(200);
+        const result = response.body;
+
+        expect(Array.isArray(result)).toBe(true);
+        expect(result).toContainEqual({ characterId: 1 }); // El elemento debe seguir en el arreglo
+      });
+
+      // Segundo test
+      it('Si el ID existe, debe eliminar correctamente el personaje', async () => {
+        // Agregamos un elemento
+        await agent.post('/rickandmorty/fav').send({ characterId: 1 });
+
+        // Eliminamos el elemento con ID 1
+        const response = await agent.delete('/rickandmorty/fav/1');
+
+        expect(response.status).toBe(200);
+        const result = response.body;
+
+        expect(Array.isArray(result)).toBe(true);
+        expect(result).not.toContainEqual({ characterId: 1 }); // El elemento ya no debe estar en el arreglo
+      });
+    });
+
